@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 
 from flask_migrate import Migrate
@@ -12,6 +13,7 @@ login_manager = LoginManager()
 
 app = Flask(__name__)
 app.config.from_object(Config)
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 db.init_app(app)
 migrate.init_app(app, db)
